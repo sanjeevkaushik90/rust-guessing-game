@@ -1,17 +1,9 @@
 use std::io;
 
 fn main() {
-    
     let guess = my_num();
-    let num = user_input();
-    match num {
-        Ok(number) => {
-            match_num(number);
-        }
-        Err(e) => {
-            println!("{}", e);
-        }
-    }
+
+    match_num(guess);
 }
 
 fn user_input() -> Result<i32, String> {
@@ -35,24 +27,20 @@ fn my_num() -> i32 {
 }
 
 fn match_num(guess: i32) {
-
     loop {
-        let x=user_input();
-       match x{
-        Ok(x)=>{
-            if guess==x{
-                println!("You guess right");
-                break;
+        let x = user_input();
+        match x {
+            Ok(x) => {
+                if guess == x {
+                    println!("You guess right");
+                    break;
+                } else {
+                    println!("You guess wrong");
+                }
             }
-            else {
-                println!("You guess wrong");
+            Err(_) => {
+                println!("invaild number Try Again")
             }
         }
-        Err(_)=>{
-            println!("invaild number Try Again")
-        }
-       }
-        
-        
     }
 }
